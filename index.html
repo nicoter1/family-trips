@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Our Family Adventures | The Cornea Family</title>
+  <meta name="description" content="Stories and photos from our family trips.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sand: #fbf6ee;
+      --cream: #fffdf9;
+      --ink: #2f2a26;
+      --muted: #6f655c;
+      --terracotta: #d9774b;
+      --terracotta-dark: #b95d34;
+      --sea: #2f7f86;
+      --sea-light: #e3f1f0;
+      --line: #eadfce;
+      --radius: 18px;
+      --shadow: 0 10px 30px rgba(73, 52, 33, 0.10);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--sand);
+      line-height: 1.6;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: var(--sea); }
+    .container { width: min(1120px, 100% - 2.5rem); margin-inline: auto; }
+
+    /* ---------- Nav ---------- */
+    .nav {
+      position: absolute; top: 0; left: 0; right: 0; z-index: 2;
+      padding: 1.25rem 0;
+    }
+    .nav .container { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .brand {
+      font-family: "Fraunces", Georgia, serif; font-weight: 700; font-size: 1.15rem;
+      color: #fff; text-decoration: none; letter-spacing: .01em;
+    }
+    .nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 1.5rem; }
+    .nav a.link { color: rgba(255,255,255,.92); text-decoration: none; font-weight: 600; font-size: .95rem; }
+    .nav a.link:hover { color: #fff; text-decoration: underline; text-underline-offset: 4px; }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative; overflow: hidden; color: #fff; text-align: center;
+      padding: 9rem 0 7.5rem;
+      background:
+        radial-gradient(circle at 18% 22%, rgba(255, 214, 153, .55), transparent 42%),
+        radial-gradient(circle at 85% 15%, rgba(255, 170, 120, .45), transparent 40%),
+        linear-gradient(160deg, #e8935f 0%, #d0704a 38%, #3d8a8f 100%);
+    }
+    .hero::after { /* soft wave into the page */
+      content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 70px;
+      background: var(--sand);
+      clip-path: ellipse(75% 100% at 50% 100%);
+    }
+    .eyebrow {
+      display: inline-block; margin: 0 0 1rem; padding: .35rem 1rem; border-radius: 999px;
+      background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.35);
+      font-size: .85rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+    }
+    .hero h1 {
+      font-family: "Fraunces", Georgia, serif; font-weight: 700;
+      font-size: clamp(2.4rem, 6vw, 4.4rem); line-height: 1.08; margin: 0 0 1rem;
+      text-shadow: 0 2px 18px rgba(80, 30, 10, .25);
+    }
+    .hero p.tagline {
+      max-width: 36rem; margin: 0 auto 2rem; font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+      color: rgba(255,255,255,.95);
+    }
+    .btn {
+      display: inline-block; padding: .85rem 1.6rem; border-radius: 999px;
+      background: #fff; color: var(--terracotta-dark); font-weight: 700; text-decoration: none;
+      box-shadow: 0 8px 24px rgba(60, 25, 10, .2); transition: transform .15s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+
+    /* ---------- Sections ---------- */
+    section { padding: 4.5rem 0; }
+    .section-head { text-align: center; max-width: 40rem; margin: 0 auto 2.75rem; }
+    .section-head h2 {
+      font-family: "Fraunces", Georgia, serif; font-weight: 700;
+      font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 .5rem; line-height: 1.15;
+    }
+    .section-head p { margin: 0; color: var(--muted); font-size: 1.05rem; }
+    .section-head .kicker {
+      color: var(--terracotta); font-weight: 700; text-transform: uppercase;
+      letter-spacing: .14em; font-size: .8rem; margin-bottom: .5rem;
+    }
+
+    /* ---------- Placeholder visuals ---------- */
+    .placeholder {
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .4rem;
+      background:
+        repeating-linear-gradient(45deg, rgba(47,127,134,.06) 0 12px, transparent 12px 24px),
+        var(--sea-light);
+      color: var(--sea); font-weight: 700; font-size: .95rem; text-align: center;
+      border: 2px dashed rgba(47,127,134,.35);
+    }
+    .placeholder svg { width: 34px; height: 34px; opacity: .75; }
+
+    /* ---------- Trips ---------- */
+    .trips-grid {
+      display: grid; gap: 1.75rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    .trip-card {
+      background: var(--cream); border-radius: var(--radius); overflow: hidden;
+      box-shadow: var(--shadow); border: 1px solid var(--line);
+      display: flex; flex-direction: column; transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .trip-card:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(73,52,33,.14); }
+    .trip-card .media { aspect-ratio: 4 / 3; }
+    .trip-card .media img { width: 100%; height: 100%; object-fit: cover; }
+    .trip-card .media.placeholder { border-width: 0 0 2px 0; }
+    .trip-card .body { padding: 1.35rem 1.5rem 1.6rem; }
+    .trip-meta {
+      display: inline-flex; align-items: center; gap: .35rem;
+      font-size: .82rem; font-weight: 700; color: var(--terracotta-dark);
+      background: #fbe9df; padding: .25rem .7rem; border-radius: 999px; margin-bottom: .7rem;
+    }
+    .trip-card h3 { font-family: "Fraunces", Georgia, serif; font-size: 1.35rem; margin: 0 0 .45rem; }
+    .trip-card p { margin: 0; color: var(--muted); }
+    .is-placeholder { font-style: italic; }
+
+    /* ---------- Gallery ---------- */
+    .gallery { background: var(--cream); border-block: 1px solid var(--line); }
+    .gallery-grid {
+      display: grid; gap: 1rem;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 180px;
+    }
+    .gallery-grid figure { margin: 0; border-radius: 14px; overflow: hidden; }
+    .gallery-grid figure img { width: 100%; height: 100%; object-fit: cover; }
+    .gallery-grid .wide { grid-column: span 2; }
+    .gallery-grid .tall { grid-row: span 2; }
+    .gallery-grid .placeholder { font-size: .85rem; height: 100%; border-radius: 14px; }
+
+    /* ---------- Footer ---------- */
+    footer {
+      background: #2f2a26; color: #e9dfd3; text-align: center; padding: 3rem 0 2.5rem;
+    }
+    footer .brand { font-size: 1.35rem; display: inline-block; margin-bottom: .5rem; }
+    footer p { margin: .35rem 0; }
+    footer .contact { color: #f3c3a6; font-weight: 600; }
+    footer small { color: #a99c8e; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 860px) {
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; }
+    }
+    @media (max-width: 560px) {
+      .nav ul { display: none; }
+      .nav .container { justify-content: center; }
+      .hero { padding: 7rem 0 6rem; }
+      section { padding: 3.5rem 0; }
+      .trips-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-auto-rows: 130px; gap: .75rem; }
+      .gallery-grid .wide { grid-column: span 2; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Reusable camera icon for placeholders -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="icon-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>
+      <circle cx="12" cy="13.5" r="3.5"/>
+    </symbol>
+  </svg>
+
+  <header>
+    <nav class="nav" aria-label="Main">
+      <div class="container">
+        <a class="brand" href="#top">The Cornea Family</a>
+        <ul>
+          <li><a class="link" href="#trips">Trips</a></li>
+          <li><a class="link" href="#gallery">Gallery</a></li>
+          <li><a class="link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="hero" id="top">
+      <div class="container">
+        <p class="eyebrow">Our travel journal</p>
+        <h1>Our Family Adventures</h1>
+        <p class="tagline">Little moments, big views, and the stories we bring home. Welcome to the places we've explored together.</p>
+        <a class="btn" href="#trips">See our trips</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= TRIPS =================
+         To add a real photo: replace the <div class="media placeholder">…</div>
+         with <div class="media"><img src="images/trip-1.jpg" alt="Describe the photo"></div> -->
+    <section id="trips">
+      <div class="container">
+        <div class="section-head">
+          <div class="kicker">Where we've been</div>
+          <h2>Trips</h2>
+          <p>A few of our favorite getaways. Stories and photos are on their way.</p>
+        </div>
+
+        <div class="trips-grid">
+          <article class="trip-card">
+            <div class="media placeholder">
+              <svg aria-hidden="true"><use href="#icon-camera"/></svg>
+              Photos coming soon
+            </div>
+            <div class="body">
+              <span class="trip-meta">📍 Place, Year</span>
+              <h3>Trip name</h3>
+              <p class="is-placeholder">Placeholder description: a few sentences about this trip, what we did, and our favorite memory will go here.</p>
+            </div>
+          </article>
+
+          <article class="trip-card">
+            <div class="media placeholder">
+              <svg aria-hidden="true"><use href="#icon-camera"/></svg>
+              Photos coming soon
+            </div>
+            <div class="body">
+              <span class="trip-meta">📍 Place, Year</span>
+              <h3>Trip name</h3>
+              <p class="is-placeholder">Placeholder description: a few sentences about this trip, what we did, and our favorite memory will go here.</p>
+            </div>
+          </article>
+
+          <article class="trip-card">
+            <div class="media placeholder">
+              <svg aria-hidden="true"><use href="#icon-camera"/></svg>
+              Photos coming soon
+            </div>
+            <div class="body">
+              <span class="trip-meta">📍 Place, Year</span>
+              <h3>Trip name</h3>
+              <p class="is-placeholder">Placeholder description: a few sentences about this trip, what we did, and our favorite memory will go here.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= GALLERY =================
+         To add a real photo: replace a tile's inner <div class="placeholder">…</div>
+         with <img src="images/photo-1.jpg" alt="Describe the photo">
+         Photos go in the images/ folder next to this file. -->
+    <section id="gallery" class="gallery">
+      <div class="container">
+        <div class="section-head">
+          <div class="kicker">Snapshots</div>
+          <h2>Photo Gallery</h2>
+          <p>Favorite moments from the road. This space is ready for our photos.</p>
+        </div>
+
+        <div class="gallery-grid">
+          <figure class="wide tall"><div class="placeholder"><svg aria-hidden="true"><use href="#icon-camera"/></svg>Photo 1</div></figure>
+          <figure><div class="placeholder"><svg aria-hidden="true"><use href="#icon-camera"/></svg>Photo 2</div></figure>
+          <figure><div class="placeholder"><svg aria-hidden="true"><use href="#icon-camera"/></svg>Photo 3</div></figure>
+          <figure><div class="placeholder"><svg aria-hidden="true"><use href="#icon-camera"/></svg>Photo 4</div></figure>
+          <figure><div class="placeholder"><svg aria-hidden="true"><use href="#icon-camera"/></svg>Photo 5</div></figure>
+          <figure><div class="placeholder"><svg aria-hidden="true"><use href="#icon-camera"/></svg>Photo 6</div></figure>
+          <figure><div class="placeholder"><svg aria-hidden="true"><use href="#icon-camera"/></svg>Photo 7</div></figure>
+          <figure class="wide"><div class="placeholder"><svg aria-hidden="true"><use href="#icon-camera"/></svg>Photo 8</div></figure>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <div class="container">
+      <span class="brand">The Cornea Family</span>
+      <p>Thanks for following along on our adventures.</p>
+      <p class="contact">Contact: <span class="is-placeholder">[contact link or email placeholder]</span></p>
+      <p><small>&copy; 2026 The Cornea Family</small></p>
+    </div>
+  </footer>
+
+</body>
+</html>
